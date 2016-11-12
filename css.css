@@ -1,0 +1,81 @@
+/* External CSS Page for home.html */
+
+body {
+	/* Add repeat to image */
+	background-image: url(C:/Users/Richard/Desktop/SPA_Project_2016/resources/images/background-hexagons.jpg);
+}
+
+/* Navigator bar */
+#nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+	text-align:center;
+	border-right: 5px solid;
+	border-left: 5px solid;
+	border-bottom: 5px solid;
+}
+
+#nav-bar li {
+	display:inline;
+}
+
+#nav-bar li a {
+    color: white;
+    display: inline-block;
+    padding: 14px 36px;
+    text-decoration: none;
+	font-size: 20px;
+}
+
+#nav-bar li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+	background-color: #111;
+}
+
+#header {
+	background-color: #333;
+	border: 5px solid;
+}
+
+#header-emblems {
+	margin-left: 37%;
+	margin-top: -5.4%;
+}
+
+/* Search bar */
+input[type=text] {
+    width: 210px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('search.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 98%;
+}
+
+#search-bar {
+	margin-top: -3.3%;
+	margin-left: 80%;
+	margin-bottom: 1%;
+}
+
+/* Wrapper for main content */
+#wrapper {
+	margin-left: 20%;
+	margin-right: 20%;
+}
