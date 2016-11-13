@@ -1,7 +1,6 @@
 /* External CSS Page for home.html */
 
 body {
-	/* Add repeat to image */
 	background-image: url(C:/Users/Richard/Desktop/SPA_Project_2016/resources/images/background-hexagons.jpg);
 }
 
@@ -13,9 +12,9 @@ body {
     overflow: hidden;
     background-color: #333;
 	text-align:center;
-	border-right: 5px solid;
-	border-left: 5px solid;
-	border-bottom: 5px solid;
+	border-right: 5px solid black;
+	border-left: 5px solid black;
+	border-bottom: 5px solid black;
 }
 
 #nav-bar li {
@@ -40,7 +39,9 @@ body {
 
 #header {
 	background-color: #333;
-	border: 5px solid;
+	border: 5px solid black;
+	width: 99%;
+	height: 80px;
 }
 
 #header-emblems {
@@ -52,7 +53,7 @@ body {
 input[type=text] {
     width: 210px;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: 2px solid black;
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
@@ -78,4 +79,139 @@ input[type=text]:focus {
 #wrapper {
 	margin-left: 20%;
 	margin-right: 20%;
+}
+
+/* Javascript slider */
+.container {
+	/* float: left; */
+	/* margin-left: 50%; */
+    /* width:600px; */
+	width: 50%;
+	float: right;
+    height:200px;
+    /* padding:20px; */
+    border-right:5px solid black;
+	border-left:5px solid black;
+	border-bottom:5px solid black;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    background: #333;
+}
+
+.image-slider-wrapper {
+    overflow: hidden;
+}
+
+#image_slider {
+    position: relative;
+    height: 280px;
+    padding:0;
+}
+
+#image_slider li {
+    max-width: 100%;
+    float:left;
+    list-style: none;
+}
+
+/* Image-bar */
+#container-image-bar-outer {
+	height: 200px;
+	width: 50%;
+	border-left: 5px solid black;
+	border-bottom: 5px solid black;
+	background: #333;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+	float: left;
+}
+
+#container-image-bar-top {
+	height: 100px;
+	width: 100%;
+	background: #222;
+}
+
+#container-image-bar-bottom {
+	height: 95px;
+	width: 100%;
+	/* background: #111; */
+}
+
+#container-image-bar {
+	width: 100%;
+	padding: 4%;
+}
+
+/* 	Button, ref http://livetools.uiparade.com/button-builder.html#*/
+.button {
+   border: 2px solid #080808;
+   background: #212121;
+   background: -webkit-gradient(linear, left top, left bottom, from(#787878), to(#212121));
+   background: -webkit-linear-gradient(top, #787878, #212121);
+   background: -moz-linear-gradient(top, #787878, #212121);
+   background: -ms-linear-gradient(top, #787878, #212121);
+   background: -o-linear-gradient(top, #787878, #212121);
+   background-image: -ms-linear-gradient(top, #787878 0%, #212121 100%);
+   padding: 2%;
+   -webkit-border-radius: 12px;
+   -moz-border-radius: 12px;
+   border-radius: 12px;
+   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #5a707d 0 1px 0;
+   color: #ffffff;
+   font-size: 16px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   margin-right: 7%;
+   margin-top: .5%;
+   float: right;
+}
+.button:hover {
+   border: 2px solid #000000;
+   text-shadow: #505254 0 1px 0;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#454545), to(#000000));
+   background: -webkit-linear-gradient(top, #454545, #000000);
+   background: -moz-linear-gradient(top, #454545, #000000);
+   background: -ms-linear-gradient(top, #454545, #000000);
+   background: -o-linear-gradient(top, #454545, #000000);
+   background-image: -ms-linear-gradient(top, #454545 0%, #000000 100%);
+   color: #f0a118;
+}
+.button:active {
+   text-shadow: #636363 0 1px 0;
+   border: 2px solid #0a3c59;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#000000));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
+
+/* All the text goes in here */
+.main-content {
+	width: 100%;
+	height: 1000px;
+	background-color: #333;
+	-webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+	border-right: 5px solid black;
+	border-left: 5px solid black;
+}
+
+#footer {
+	background-color: #333;
+	border: 5px solid black;
+	width: 99%;
+	height: 80px;
 }
