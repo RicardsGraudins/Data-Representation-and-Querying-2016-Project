@@ -1,7 +1,7 @@
 /* External CSS Page for home.html */
 
 body {
-	background-image: url(C:/Users/Richard/Desktop/SPA_Project_2016/resources/images/background-hexagons.jpg);
+	background-image: url('resources/images/background-hexagons.jpg'); 
 }
 
 /* Navigator bar */
@@ -57,7 +57,7 @@ input[type=text] {
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    background-image: url('search.png');
+    /* background-image: url('resources/images/search.png'); */
     background-position: 10px 10px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
@@ -88,7 +88,7 @@ input[type=text]:focus {
     /* width:600px; */
 	width: 50%;
 	float: right;
-    height:200px;
+    height:323px;
     /* padding:20px; */
     border-right:5px solid black;
 	border-left:5px solid black;
@@ -105,8 +105,9 @@ input[type=text]:focus {
 
 #image_slider {
     position: relative;
-    height: 280px;
-    padding:0;
+    /* height: 280px; */
+    margin-top: -.5%;
+	margin-left: -9%;
 }
 
 #image_slider li {
@@ -117,7 +118,7 @@ input[type=text]:focus {
 
 /* Image-bar */
 #container-image-bar-outer {
-	height: 200px;
+	height: 323px;
 	width: 50%;
 	border-left: 5px solid black;
 	border-bottom: 5px solid black;
@@ -129,13 +130,13 @@ input[type=text]:focus {
 }
 
 #container-image-bar-top {
-	height: 100px;
+	height: 232px;
 	width: 100%;
 	background: #222;
 }
 
 #container-image-bar-bottom {
-	height: 95px;
+	height: 100px;
 	width: 100%;
 	/* background: #111; */
 }
