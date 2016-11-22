@@ -36,10 +36,10 @@
 		<nav id="nav-bar">
 			<ul>
 				<!-- Need to change class="active" when python changes page or on mouse over -->
-				<li><a class="active" href="templates/home.html"> Home </a></li>
-				<li><a href="x"> LinkTwo </a></li>
-				<li><a href="y"> LinkThree </a></li>
-				<li><a href="z"> Linkfour </a></li>
+				<li><a class="active" href="{{ url_for('index') }}"> Home </a></li>
+				<li><a href="{{ url_for('playstyle') }}"> Playstyle </a></li>
+				<li><a href="{{ url_for('profile') }}"> Login </a></li>
+				<li><a href="{{ url_for('about') }}"> About </a></li>
 			</ul>
 		</nav>
 		
@@ -47,20 +47,20 @@
 		<div id="container-image-bar-outer">
 			<div id="container-image-bar-top">
 				<!-- Placeholder image -->
-				<img src="static/resources/images/jax_edited.png" />
+				<img src="static/resources/images/jax_edited.png" class="image-bar-image" image-bar-image-link="{{ url_for('jax') }}"/>
 			</div>
 				
 			<div id="container-image-bar-bottom">
 				<div id="container-image-bar">
 					<!-- All of these images should be clickable and change page content -->
-					<img src="static/resources/portraits/Malphite.png" />
-					<img src="static/resources/portraits/Riven.png" />
-					<img src="static/resources/portraits/Irelia.png" />
-					<img src="static/resources/portraits/Singed.png" />
-					<img src="static/resources/portraits/Gnar.png" />
-					<img src="static/resources/portraits/Gangplank.png" />
-					<img src="static/resources/portraits/Jax.png" />
-					<img src="static/resources/portraits/Poppy.png" />
+					<img src="static/resources/portraits/Malphite.png" class="image-bar-image" image-bar-image-link="{{ url_for('malphite') }}"/>
+					<img src="static/resources/portraits/Riven.png" class="image-bar-image" image-bar-image-link="{{ url_for('riven') }}"/>
+					<img src="static/resources/portraits/Irelia.png" class="image-bar-image" image-bar-image-link="{{ url_for('irelia') }}"/>
+					<img src="static/resources/portraits/Singed.png" class="image-bar-image" image-bar-image-link="{{ url_for('singed') }}" />
+					<img src="static/resources/portraits/Gnar.png" class="image-bar-image" image-bar-image-link="{{ url_for('gnar') }}"/>
+					<img src="static/resources/portraits/Gangplank.png" class="image-bar-image" image-bar-image-link="{{ url_for('gangplank') }}"/>
+					<img src="static/resources/portraits/Jax.png" class="image-bar-image" image-bar-image-link="{{ url_for('jax') }}" />
+					<img src="static/resources/portraits/Poppy.png" class="image-bar-image" image-bar-image-link="{{ url_for('poppy') }}"/>
 					<a href='#' class='button'>View All</a>
 				</div>
 			</div>
@@ -71,16 +71,19 @@
 			<div class="image-slider-wrapper">
 				<ul id="image_slider">
 					<!-- Placeholder images for slider -->
-					<li><img src="static/resources/slider/all_stars.png" />
-					<li><img src="static/resources/slider/worlds.png" />
-					<li><img src="static/resources/slider/TSM.png" />
-					<li><img src="static/resources/slider/preseason.png" />
-					<li><img src="static/resources/slider/reddit.png" />
+					<li><img src="static/resources/slider/all_stars.png" class="slide" image-link="http://www.lolesports.com/en_US/all-star/all_star_2016/schedule/default"/></li>
+					<li><img src="static/resources/slider/worlds.png" class="slide" image-link="http://www.lolesports.com/en_US/worlds/world_championship_2016/about/"/></li>
+					<li><img src="static/resources/slider/TSM.png" class="slide" image-link="http://www.tsm.gg"/></li>
+					<li><img src="static/resources/slider/preseason.png" class="slide" image-link="https://www.youtube.com/watch?v=DZC_Zvo5HUI"/></li>
+					<li><img src="static/resources/slider/reddit.png" class="slide" image-link="https://www.reddit.com/r/leagueoflegends/"/></li>
 				</ul>
 			</div>
 		</div>
-			
+		
+		<!-- Load template code into main-content -->
 		<div class="main-content">
+		
+		{% block body %}{% endblock %}
 		
 		</div>
 	</div>
@@ -89,6 +92,7 @@
 		
 	</footer>
 	
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script> 
     <script type="text/javascript">
 		var ul;
 		var li_items;
@@ -164,6 +168,21 @@
 				}
 			}, opts.dalay || 17);
 		}
+		
+		/* Open new tab when slide clicked */
+		$(function(){
+			$('.slide').click(function(){
+				window.open($(this).attr("image-link"), "_blank");
+			});
+		});
+		
+		/* Loads template when image-bar-image clicked */
+		$(function(){
+			$('.image-bar-image').click(function(){
+				location.assign($(this).attr("image-bar-image-link"), "_blank");
+			});
+		});
+		
 		window.onload = init;
     </script>
 	
