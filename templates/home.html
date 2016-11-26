@@ -15,7 +15,7 @@
     </style>
 
   </head>
-
+  
   <body>
 	<!-- Top part of page -->
 	<header id="header">
@@ -82,17 +82,43 @@
 		
 		<!-- Load template code into main-content -->
 		<div class="main-content">
+		<!--<svg></svg> -->
 		
 		{% block body %}{% endblock %}
 		
 		</div>
 	</div>
 	
+	<!-- Footer links -->
 	<footer id="footer">
-		
+		<div class="col">
+		  <ul>
+			<li><a href="{{ url_for('malphite') }}">Malphite</a></li>
+			<li><a href="{{ url_for('irelia') }}">Irelia</a></li>
+		  </ul>
+		</div>
+		<div class="col">
+		  <ul>
+			<li><a href="{{ url_for('riven') }}">Riven</a></li>
+			<li><a href="{{ url_for('singed') }}">Singed</a></li>
+		  </ul>
+		</div>
+		<div class="col">
+		  <ul>
+			<li><a href="{{ url_for('gnar') }}">Gnar</a></li>
+			<li><a href="{{ url_for('gangplank') }}">Gangplank</a></li>
+		  </ul>
+		</div>
+		<div class="col">
+		  <ul>
+			<li><a href="{{ url_for('jax') }}">Jax</a></li>
+			<li><a href="{{ url_for('poppy') }}">Poppy</a></li>
+		  </ul>
+		</div>
 	</footer>
 	
-	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script> 
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript">
 		var ul;
 		var li_items;

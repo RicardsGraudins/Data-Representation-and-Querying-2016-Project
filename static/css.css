@@ -203,7 +203,7 @@ body {
 /* All the text goes in here */
 .main-content {
 	width: 100%;
-	height: 1000px;
+	height: 1300px;
 	background-color: #333;
 	-webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
@@ -216,7 +216,56 @@ body {
 	background-color: #333;
 	border: 5px solid black;
 	width: 99%;
-	height: 80px;
+	height: 89px;
+}
+
+/* Footer styling */
+.col { 
+  background: #333;
+  float: left;
+  padding: 0 1% 0 1%;
+  width: 23%;
+}
+ 
+.col:first-child {
+  padding: 0 1% 0 1%;
+}
+ 
+#footer ul { 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+}
+ 
+#footer li { 
+  float: left; 
+  height: 32px; 
+  margin: 3px 0; 
+  width: 100%;
+  border: 2px solid #000000;
+  text-shadow: #505254 0 1px 0;
+  background: #000000;
+  background: -webkit-gradient(linear, left top, left bottom, from(#454545), to(#000000));
+  background: -webkit-linear-gradient(top, #454545, #000000);
+  background: -moz-linear-gradient(top, #454545, #000000);
+  background: -ms-linear-gradient(top, #454545, #000000);
+  background: -o-linear-gradient(top, #454545, #000000);
+  background-image: -ms-linear-gradient(top, #454545 0%, #000000 100%);
+}
+ 
+#footer li a { 
+  color: #FFF;
+  display: block;
+  float: left; 
+  font: normal 12px Verdana, Geneva, sans-serif; 
+  padding: 10px 0 0 40%; 
+  text-decoration: none;
+  width: 60%;
+}
+
+#footer li:hover { 
+   border: 4px solid #000000;
+   color: #f0a118;
 }
 
 /* Change regular cursor to pointer on mouse over slide */
@@ -228,7 +277,7 @@ body {
 	cursor: pointer;
 }
 
-/* login/register/profile */
+/* Login/Register/Profile */
 .container2 {
 	padding-right:15px;
 	padding-left:15px;
@@ -272,7 +321,7 @@ body {
 	margin-bottom:15px;
 }
 
-/* register/login button */
+/* Register/Login button */
 .button2 {
    border: 2px solid #080808;
    background: #212121;
@@ -323,3 +372,80 @@ body {
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
    color: #fff;
 }
+
+/* HomeContent Graph */
+.y.axisRight text {
+    fill: green;
+}
+
+.y.axisLeft text {
+    fill: steelblue;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar1 {
+  fill: steelblue;
+}
+
+.bar2 {
+  fill: green;
+}
+
+.x.axis path {
+  display: none;
+}
+
+/* Main-content styling */
+.title {
+	text-shadow:1px 1px 1px rgba(46,39,26,1);
+	font-weight:bold;
+	color:#FFFFFF;
+	letter-spacing:0pt;
+	word-spacing:2pt;
+	font-size:150%;
+	text-align:center;
+	font-family:comic sans, comic sans ms, cursive, verdana, arial, sans-serif;
+	margin: 0 0 0 0;
+}
+
+.title2 {
+	text-shadow:1px 1px 1px rgba(46,39,26,1);
+	font-weight:bold;
+	text-decoration:underline;
+	color:#FFFFFF;
+	letter-spacing:0pt;
+	word-spacing:2pt;
+	font-size:120%;
+	text-align:center;
+	font-family:comic sans, comic sans ms, cursive, verdana, arial, sans-serif;
+	margin: 0 0 0 0;
+}
+
+/* Paragraphs/div etc */
+.content {
+	color:#FFFFFF;
+	font-weight: normal;
+	font-size: 100%;
+	font-family:comic sans, comic sans ms, cursive, verdana, arial, sans-serif;
+	text-align:center;
+	word-spacing:2pt;
+}
+
+/* Links */
+.link {
+	color: #FFFFFF;
+}
+
+.link:visited {
+	color: #FFFFFF;
+} 
+
+.link:hover {
+	color: #f0a118;
+} 

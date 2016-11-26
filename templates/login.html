@@ -16,7 +16,14 @@
             </form>
             <br>
             <div>
-                Don't have an account? <a href="{{ url_for('register') }}">Sign up here</a>.
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<h3 class="content"> {{ message }} </h3>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+                <p class="content"> Don't have an account? <a class="link" href="{{ url_for('register') }}">Sign up here</a>. </p>
             </div>
         </div>
     </div>

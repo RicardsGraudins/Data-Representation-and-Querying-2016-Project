@@ -1,0 +1,100 @@
+{% extends "home.html" %}
+{% block body %}
+	<p class = "title"> Pre-Season 7 Statistics </p>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript">
+		// Graph
+		// Margin for graph
+		var margin = {top: 80, right: 35, bottom: 80, left: 250},
+			width = 900 - margin.left - margin.right,
+			height = 400 - margin.top - margin.bottom;
+
+		// Scale x = width, y0 = popularity % 0 to 25, y1 = win % 0 to 100 
+		var x = d3.scale.ordinal()
+			.rangeRoundBands([0, width], .1);
+
+		var y0 = d3.scale.linear().domain([0, 25]).range([height, 0]);
+		var y1 = d3.scale.linear().domain([0, 100]).range([height, 0]);
+
+		var xAxis = d3.svg.axis()
+			.scale(x)
+			.orient("bottom");
+
+		// Left yAxis
+		var yAxisLeft = d3.svg.axis().scale(y0).ticks(4).orient("left");
+		// Right yAxis
+		var yAxisRight = d3.svg.axis().scale(y1).ticks(6).orient("right");
+
+		// Adding to main-content instead of the standard body
+		var svg = d3.select(".main-content").append("svg")
+			.attr("width", width + margin.left + margin.right)
+			.attr("height", height + margin.top + margin.bottom)
+		  .append("g")
+			.attr("class", "graph")
+			.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		
+		// Using local tsv file to load data
+		d3.tsv("static/resources/graphs/data.tsv", type, function(error, data) {
+		  x.domain(data.map(function(d) { return d.champion; }));
+		  y0.domain([0, d3.max(data, function(d) { return d.popularity; })]);
+		  
+		  // Append and add text
+		  svg.append("g")
+			  .attr("class", "x axis")
+			  .attr("transform", "translate(0," + height + ")")
+			  .call(xAxis);
+
+		  svg.append("g")
+			  .attr("class", "y axis axisLeft")
+			  .attr("transform", "translate(0,0)")
+			  .call(yAxisLeft)
+			.append("text")
+			  .attr("y", 6)
+			  .attr("dy", "-2em")
+			  .style("text-anchor", "end")
+			  .style("text-anchor", "end")
+			  .text("Popularity %");
+			
+		  svg.append("g")
+			  .attr("class", "y axis axisRight")
+			  .attr("transform", "translate(" + (width) + ",0)")
+			  .call(yAxisRight)
+			.append("text")
+			  .attr("y", 6)
+			  .attr("dy", "-2em")
+			  .attr("dx", "2em")
+			  .style("text-anchor", "end")
+			  .text("Win %");
+
+		  bars = svg.selectAll(".bar").data(data).enter();
+
+		  bars.append("rect")
+			  .attr("class", "bar1")
+			  .attr("x", function(d) { return x(d.champion); })
+			  .attr("width", x.rangeBand()/2)
+			  .attr("y", function(d) { return y0(d.popularity); })
+			  .attr("height", function(d,i,j) { return height - y0(d.popularity); }); 
+
+		  bars.append("rect")
+			  .attr("class", "bar2")
+			  .attr("x", function(d) { return x(d.champion) + x.rangeBand()/2; })
+			  .attr("width", x.rangeBand() / 2)
+			  .attr("y", function(d) { return y1(d.win); })
+			  .attr("height", function(d,i,j) { return height - y1(d.win); }); 
+
+		});
+		
+		function type(d) {
+		  d.popularity = +d.popularity;
+		  return d;
+		}
+	</script>
+	<p class="title"> League of Legends </p>
+	<p class="title2"> Top-Lane Guides </p>
+	<p class="content">Welcome to TLG!<br>
+	If it's your first time visiting check out our <a class="link" href="{{ url_for('playstyle') }}">playstyle page</a> to find out the various ways top lane can be played.<br>
+	To view a guide simply click on a champion's portrait or on one of the links at the bottom of the page.<br>
+	Want to find out more about the author or submit a guide? Visit the <a class="link" href="{{ url_for('about') }}">about section.</a><br>
+	Feel free to <a class="link" href="{{ url_for('register') }}">Sign up</a> to be notified by email when a new guide comes out or when an older one gets updated.
+	</p>
+{% endblock %}

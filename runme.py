@@ -14,7 +14,8 @@ mongo = PyMongo(app)
 #http://127.0.0.1:5000/ = homepage
 @app.route('/')
 def index():
-	return render_template('home.html')
+	#return render_template('home.html')
+	return render_template('homeContent.html')
 
 #http://127.0.0.1:5000/irelia to poppy
 #Change content of main-content div
@@ -73,7 +74,8 @@ def login():
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
 
-    return 'Invalid username/password combination'
+    flash('Wrong username/password!')
+    return render_template('login.html')
 	
 #Register, if the method is post - check for username in database, if username does not exist then add the record to the database
 #Password is hashed using bcrypt for security and the hashpass value is stored on the database instead of the password
@@ -87,7 +89,7 @@ def register():
 
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['pass'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name' : request.form['username'], 'password' : hashpass})
+            users.insert({'name' : request.form['username'], 'email' : request.form['email'], 'password' : hashpass})
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
         
