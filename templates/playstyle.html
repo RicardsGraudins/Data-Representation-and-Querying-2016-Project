@@ -1,4 +1,219 @@
 {% extends "home.html" %}
 {% block body %}
-<h1> Playstyle page </h1>
+	<!-- Img ids for reference in JS -->
+	<img id="poppy" width="0" height="0" src="static/resources/portraits/Poppy.png">
+	<img id="gangplank" width="0" height="0" src="static/resources/portraits/Gangplank.png">
+
+	<canvas id="canvas" height="642px" width="1121%" style="border: 1px solid black; margin-top: -1.6%; background-image: url('static/resources/images/summoners_rift.png')"></canvas>
+	
+    <script type="text/javascript">
+		// Gets a handle to the element with id canvasOne.
+		var canvas = document.getElementById("canvas");
+		// Get a 2D context for the canvas.
+		var ctx = canvas.getContext("2d");
+		var color = 'rgba(0, 0, 0, 0.01)'; // Setting color of circle to transparent
+		
+		var img = document.getElementById("poppy");
+		var img2 = document.getElementById("gangplank");
+		
+		function ball(x, y, r, dx, dy, mass) {
+			this.x = x;
+			this.y = y;
+			this.r = r;
+			this.dx = dx;
+			this.dy = dy;
+			this.mass = mass;
+			
+			this.draw = function(){
+				ctx.beginPath();
+				ctx.arc (this.x, this.y, this.r, 0, Math.PI * 2, false);
+				ctx.fillStyle = color;
+				ctx.fill();
+				// Bouncing off walls code
+				this.x += this.dx;
+				this.y += this.dy;
+			
+				// If x cord is greater than canvas width(800) or x cord less than ball radius, change dx sign
+				if(this.x + this.dx > canvas.width-this.r || this.x + this.dx < this.r){
+					this.dx = -this.dx; 
+				}
+				
+				// If y cord is greater than canvas height(550) or y cord is less than ball radius, change dy sign
+				if(this.y + this.dy > canvas.height-this.r || this.y + this.dy < this.r){
+					this.dy = -this.dy;
+				}
+				
+				// For mouse click
+				// If x > canvas.width then take away 15 from x to make it bounce back into canvas
+				if(this.x > canvas.width-this.r) {
+					this.x -= 15;
+				}
+					
+				// If y > canvas.height then take away 15 from y to make it bounce back into canvas
+				if(this.y > canvas.height-this.r) {
+					this.y -= 15;
+				}
+			}
+			
+			this.resize = function (radius){
+				this.r = radius;
+			}
+			
+			this.move = function (xpos, ypos){
+				this.x += xpos;
+				this.y =+ ypos;
+			}
+		}//ball
+		
+		function drawImage(q, x, y){
+			this.q = q;
+			this.x = x;
+			this.y = y;
+			
+			this.draw = function() {
+				ctx.drawImage(this.q, this.x, this.y)
+			}
+		
+		}//drawImage
+		
+		var topPos = canvas.offsetTop; // OffsetTop canvas
+		var leftPos = canvas.offsetLeft; // OffsetLeft canvas
+		
+		// User interaction only controls b1
+		// Add a Javascript event listener to the keypress event.
+		window.addEventListener("keypress", function(event) { 
+			// Just log the event to the console.
+			//console.log(event);
+			});
+
+		// Keypresses with jQuery
+		$(document.body).on('keydown', function(e) {
+			//console.log(e.which);
+			switch (e.which) {
+			// Key code for a
+				case 65:
+				//console.log('a key pressed!');
+				b1.dx -= 1;
+				break;
+				
+				// Key code for w
+				case 87:
+				//console.log('w key pressed!');
+				b1.dy -= 1;
+				break;
+
+				// Key code for d
+				case 68:
+				//console.log('d key pressed!');
+				b1.dx += 1;
+				break;
+				  
+				// Key code for s
+				case 83:
+				//console.log('s key pressed!');
+				b1.dy += 1;
+				break;
+				}
+			});
+		  
+		canvas.addEventListener("click", function(event) { // On click change b1(x,y) to mouse click
+			ctx.beginPath();
+			b1.x = event.clientX - leftPos;
+			b1.y = event.clientY - topPos;
+			b1.draw();
+			/* Disabled, user should see portrait only
+			// Change color on mouse click
+			var counter = 41 * b1.x;
+			var colorValue = counter + 15;
+			color = 'hsl(' + colorValue + ',70%, 60%)';
+			'#'+(Math.random()*0xFFFFFF<<0).toString(16);
+			ctx.fill();
+			*/
+		});
+		
+		var b1 = new ball(300, 300, 30, 2, -2, 10);
+		var b2 = new ball(400, 400, 30, 2, -2, 10);
+		
+		var colX;
+		var colY;
+		var colAngle;
+		var distance;
+		var magnitude_1;
+		var magnitude_2;
+		var direction_1;
+		var direction_2;
+		var new_dy_1;
+		var new_dy_2;
+		var new_dx_1;
+		var new_dx_2;
+		var final_dx_1;
+		var final_dx_2
+		var final_dy_1;
+		var final_dy_2;
+		
+		// Collision between 2 balls with images inside them
+		function update(){
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			b1.draw();
+			b2.draw();
+			var i1 = new drawImage(img, b1.x - 25, b1.y - 24);
+			var i2 = new drawImage(img2, b2.x - 25, b2.y - 24);
+			i1.draw();
+			i2.draw();
+			
+			colX = b1.x - b2.x; // Horizontal distance
+			colY = b1.y - b2.y; // Vertical distance
+			//console.log(colX);
+			//console.log(colY);
+			
+			distance = Math.sqrt(Math.pow(colX,2) + Math.pow(colY,2)); // Distance between 2 circles
+			//console.log(distance);
+			
+			if (distance <= b1.r + b2.r){ // If distance <= b1 radius + b2 radius
+				//console.log('Collision Detected');
+
+				colAngle = Math.atan2(colY, colX); // Collision angle
+				//console.log(colAngle);
+				
+				magnitude_1 = Math.sqrt(b1.dx * b1.dx + b1.dy * b1.dy) // b1 speed
+				magnitude_2 = Math.sqrt(b2.dx * b2.dx + b2.dy * b2.dy) // b2 speed
+				
+				direction_1 = Math.atan2(b1.dy, b1.dx); // b1 direction
+				direction_2 = Math.atan2(b2.dy,b2.dx) // b2 direction
+				
+				new_dx_1 = magnitude_1 * Math.cos(direction_1 - colAngle); // New dx velocity
+				
+				new_dy_1 = magnitude_1 * Math.sin(direction_1 - colAngle); // New velocity for other vectors
+				new_dx_2 = magnitude_2 * Math.cos(direction_2 - colAngle);
+				new_dy_2 = magnitude_2 * Math.sin(direction_2 - colAngle);
+				
+				// Final dx for b1
+				final_dx_1 = ((b1.mass - b2.mass) * new_dx_1 +(b2.mass + b2.mass)* new_dx_2)/(b1.mass + b2.mass);
+				
+				// Final dy for b2
+				final_dx_2 = ((b1.mass + b1.mass)* new_dx_1 +(b2.mass - b1.mass)* new_dx_2)/(b1.mass + b2.mass);
+				
+				// Y speed does not change (1d collision)
+				final_dy_1 = new_dy_1;
+				final_dy_2 = new_dy_2;
+				
+				// Determine x and y on the original axis sytem using trig
+				b1.dx = Math.cos(colAngle) * final_dx_1 + Math.cos(colAngle + Math.PI /2) * final_dy_1;
+				b1.dy = Math.sin(colAngle) * final_dx_1 + Math.sin(colAngle + Math.PI /2) * final_dy_1;
+				b2.dx = Math.cos(colAngle) * final_dx_2 + Math.cos(colAngle + Math.PI /2) * final_dy_2;
+				b2.dy = Math.sin(colAngle) * final_dx_2 + Math.sin(colAngle + Math.PI /2) * final_dy_2;
+			}//if
+		}//update
+		
+		setInterval(update, 10);
+    </script>
+	<p class="title"> Playstyles </p>
+	<br>
+	<br>
+	<p class="content"> Use the WASD keys to control Poppy and move around the map.<br>
+	As you can tell from this mini game, top lane can be played in any way you want, <br>
+	you could roam starting at level 1 across the entire map and get up to all sorts of mayhem. <br>
+	Though I would not recommend starting to roam at level 1 and instead direct your attention to the<br>
+	following old school <a class="link" href="https://www.youtube.com/watch?v=jkTbLLYkHYY">video</a> which demonstrates the various playstyles and how to counter them.
+	</p>
 {% endblock %}

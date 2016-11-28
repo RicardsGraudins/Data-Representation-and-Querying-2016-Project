@@ -19,24 +19,28 @@
   <body>
 	<!-- Top part of page -->
 	<header id="header">
-		<h1 style="color: white"> League of Legends </h1>
+		<p class="title" style="text-align:left; margin-left: 2px;"> League of Legends </p>
+		<p class="title" style="text-align:left; margin-left: 6px; margin-top: 2px;"> Top-Lane Guides </p>
+		<img class="center-image" src="static/resources/images/emblemsedited.png" />
+
 		<div id="search-bar">
 			<form>
 				<input type="text" name="search" placeholder="Search Keyword">
 			</form>
 		</div>
 		
+		<!--
 		<div id="header-emblems">
 			<img src="static/resources/images/emblemsedited.png" />
 		</div>
+		-->
 	</header>
 	
 	<!-- Navigator bar for links, wrapper div adds margins --> 
 	<div id="wrapper">
 		<nav id="nav-bar">
 			<ul>
-				<!-- Need to change class="active" when python changes page or on mouse over -->
-				<li><a class="active" href="{{ url_for('index') }}"> Home </a></li>
+				<li><a href="{{ url_for('index') }}"> Home </a></li>
 				<li><a href="{{ url_for('playstyle') }}"> Playstyle </a></li>
 				<li><a href="{{ url_for('profile') }}"> Login </a></li>
 				<li><a href="{{ url_for('about') }}"> About </a></li>
@@ -53,14 +57,14 @@
 			<div id="container-image-bar-bottom">
 				<div id="container-image-bar">
 					<!-- All of these images should be clickable and change page content -->
-					<img src="static/resources/portraits/Malphite.png" class="image-bar-image" image-bar-image-link="{{ url_for('malphite') }}"/>
+					<img src="static/resources/portraits/Gangplank.png" class="image-bar-image" image-bar-image-link="{{ url_for('gangplank') }}"/>
+					<img src="static/resources/portraits/Poppy.png" class="image-bar-image" image-bar-image-link="{{ url_for('poppy') }}"/>
+					<img src="static/resources/portraits/Yasuo.png" class="image-bar-image" image-bar-image-link="{{ url_for('yasuo') }}"/>
+					<img src="static/resources/portraits/Gnar.png" class="image-bar-image" image-bar-image-link="{{ url_for('gnar') }}"/>
 					<img src="static/resources/portraits/Riven.png" class="image-bar-image" image-bar-image-link="{{ url_for('riven') }}"/>
 					<img src="static/resources/portraits/Irelia.png" class="image-bar-image" image-bar-image-link="{{ url_for('irelia') }}"/>
 					<img src="static/resources/portraits/Singed.png" class="image-bar-image" image-bar-image-link="{{ url_for('singed') }}" />
-					<img src="static/resources/portraits/Gnar.png" class="image-bar-image" image-bar-image-link="{{ url_for('gnar') }}"/>
-					<img src="static/resources/portraits/Gangplank.png" class="image-bar-image" image-bar-image-link="{{ url_for('gangplank') }}"/>
 					<img src="static/resources/portraits/Jax.png" class="image-bar-image" image-bar-image-link="{{ url_for('jax') }}" />
-					<img src="static/resources/portraits/Poppy.png" class="image-bar-image" image-bar-image-link="{{ url_for('poppy') }}"/>
 					<a href='#' class='button'>View All</a>
 				</div>
 			</div>
@@ -82,8 +86,11 @@
 		
 		<!-- Load template code into main-content -->
 		<div class="main-content">
-		<!--<svg></svg> -->
-		
+		<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+		<script src="https://www.amcharts.com/lib/3/themes/black.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
 		{% block body %}{% endblock %}
 		
 		</div>
@@ -93,7 +100,7 @@
 	<footer id="footer">
 		<div class="col">
 		  <ul>
-			<li><a href="{{ url_for('malphite') }}">Malphite</a></li>
+			<li><a href="{{ url_for('yasuo') }}">Yasuo</a></li>
 			<li><a href="{{ url_for('irelia') }}">Irelia</a></li>
 		  </ul>
 		</div>
@@ -117,8 +124,6 @@
 		</div>
 	</footer>
 	
-	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-	<script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript">
 		var ul;
 		var li_items;

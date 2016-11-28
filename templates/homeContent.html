@@ -1,9 +1,8 @@
 {% extends "home.html" %}
 {% block body %}
 	<p class = "title"> Pre-Season 7 Statistics </p>
-	<script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript">
-		// Graph
+		// D3 Graph
 		// Margin for graph
 		var margin = {top: 80, right: 35, bottom: 80, left: 250},
 			width = 900 - margin.left - margin.right,
@@ -42,6 +41,8 @@
 		  svg.append("g")
 			  .attr("class", "x axis")
 			  .attr("transform", "translate(0," + height + ")")
+			  .style("fill", "#ffffff")
+			  .style("font-family", "comic sans, comic sans ms, cursive, verdana, arial, sans-serif")
 			  .call(xAxis);
 
 		  svg.append("g")
@@ -52,7 +53,7 @@
 			  .attr("y", 6)
 			  .attr("dy", "-2em")
 			  .style("text-anchor", "end")
-			  .style("text-anchor", "end")
+			  .style("fill", "#ffffff")
 			  .text("Popularity %");
 			
 		  svg.append("g")
@@ -64,6 +65,7 @@
 			  .attr("dy", "-2em")
 			  .attr("dx", "2em")
 			  .style("text-anchor", "end")
+			  .style("fill", "#ffffff")
 			  .text("Win %");
 
 		  bars = svg.selectAll(".bar").data(data).enter();

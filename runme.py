@@ -27,9 +27,9 @@ def irelia():
 def jax():
 	return render_template('jax.html')
 	
-@app.route('/malphite')
-def malphite():
-	return render_template('malphite.html')
+@app.route('/yasuo')
+def yasuo():
+	return render_template('yasuo.html')
 	
 @app.route('/riven')
 def riven():
@@ -97,17 +97,42 @@ def register():
 
     return render_template('register.html')
 	
-#about page
+#About page
 @app.route('/about')
 def about():
 	return render_template('about.html')
 	
-#playstyle page
+#Playstyle page
 @app.route('/playstyle')
 def playstyle():
 	return render_template('playstyle.html')
 	
+#Logout, when user clicks on logout button, pop the session and redirect to profile
+@app.route('/logout')
+def logout():
+	session.pop('username', None)
+	return redirect(url_for('profile'))
 	
+#DeleteAccount, when user clicks on delete account button, remove record from database and pop session
+@app.route('/deleteAccount')
+def deleteAccount():
+	users = mongo.db.users
+	delUser = session['username']
+	users.remove({"name": delUser})
+	session.pop('username', None)
+	return redirect(url_for('profile'))
+	
+	
+#bad request 400 with request form, leaving test1@gmail for now	
+@app.route('/changeEmail')
+def changeEmail():
+	users = mongo.db.users
+	user = users.find_one({'name' : session['username']})
+	user['email'] = 'test1@gmail.com'
+	users.save(user)
+	return redirect(url_for('profile'))
+
+
 if __name__ == "__main__":
 	app.secret_key = 'mysecret'
 	app.run()

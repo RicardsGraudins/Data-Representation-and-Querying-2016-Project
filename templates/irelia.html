@@ -1,4 +1,58 @@
 {% extends "home.html" %}
 {% block body %}
-<h1> Irelia page </h1>
+
+<iframe class="video" width="100.1%" height="50%" src="https://www.youtube.com/embed/MFcsOX9xcIo" frameborder="0" allowfullscreen></iframe>
+
+<script>
+// AmCharts chart 
+var chart = AmCharts.makeChart("chartdiv", {
+	// Theme & animation duration
+    "theme": "black",
+    "type": "serial",
+	"startDuration": 2,
+	// 3 columns Popularity, Win, Ban with percent value
+    "dataProvider": [{
+        "catagory": "Popularity",
+        "percent": 9.5,
+        "color": "#1fd2e7"
+    }, {
+        "catagory": "Win",
+        "percent": 50.7,
+        "color": "  #2ad32f"
+    }, {
+        "catagory": "Ban",
+        "percent": 1.5,
+        "color": "#FF0F00"
+    }],
+    "valueAxes": [{
+        "position": "left",
+        "title": "Percentage"
+    }],
+	// Display balloonText on mouseover
+    "graphs": [{
+        "balloonText": "[[category]]: <b>[[value]] %</b>",
+        "fillColorsField": "color",
+        "fillAlphas": 1,
+        "lineAlpha": 0.1,
+        "type": "column",
+        "valueField": "percent"
+    }],
+	// Enabling 3D
+    "depth3D": 20,
+	"angle": 30,
+    "chartCursor": {
+        "categoryBalloonEnabled": false,
+        "cursorAlpha": 0,
+        "zoomable": false
+    },
+	// Text below columns
+    "categoryField": "catagory",
+    "categoryAxis": {
+        "gridPosition": "start",
+        "labelRotation": 0
+    }
+});
+</script>
+<p class="title2"><br><br> Season 7 Irelia Statistics:<br><br> </p>
+<div id="chartdiv"></div>
 {% endblock %}
