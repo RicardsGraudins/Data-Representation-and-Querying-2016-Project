@@ -1,5 +1,6 @@
 {% extends "home.html" %}
-{% block body %} 
+{% block body %}
+<!-- Form groups for registration -->
 <div class="container2">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
@@ -19,7 +20,76 @@
                 <button type="submit" class="button2">Register</button>
             </form>
             <br>
+				<p class="content"> Already have an account? <a class="link" href="{{ url_for('profile') }}">Sign in here</a>. </p>
         </div>
     </div>
 </div>
+
+<!-- Source http://www.html5canvastutorials.com/tutorials/html5-canvas-exploding-dots/ -->
+<canvas id="canvas" style="margin-top: 1%;" width="1100" height="600"></canvas>
+
+ <script>
+	$(function() {
+		var points = [], numPoints = 100, i, canvas, context, width, height, gravity = 0.07, emitter;
+		
+		canvas = $("#canvas")[0];
+		width = canvas.width;
+		height = canvas.height;
+		context = canvas.getContext("2d");
+		
+		emitter = {x:width / 2, y:height};
+		
+		function initPoint(p) {
+			p.x = emitter.x;
+			p.y = emitter.y;
+			p.vx = Math.random() * 5 - 2;
+			p.vy = Math.random() * -6 - 3;
+			p.radius = Math.random() * 4 + 1;
+		}
+		
+		function update() {
+			var i, point, len = points.length;
+			for(i = 0; i < len; i += 1) {
+				point = points[i];
+				point.vy += gravity;
+				point.x += point.vx;
+				point.y += point.vy;
+				if(point.x > width ||
+				   point.x < 0 ||
+				   point.y > height ||
+				   point.y < 0) {
+					initPoint(point);
+				}
+			}
+		}
+		
+		function draw() {
+			var i, point, len = points.length;
+			context.clearRect(0, 0, width, height);
+			for(i = 0; i < len; i += 1) {
+				point = points[i];
+				context.beginPath();
+				context.arc(point.x, point.y, point.radius, 0, Math.PI * 2, false);
+				context.fillStyle = "#111";
+				context.fill();
+				
+			}
+		}
+		
+		function addPoint() {
+			var point;
+			if(points.length < numPoints) {
+				point = {};
+				initPoint(point);
+				points.push(point);
+			}
+		}
+		
+		setInterval(function() {
+			addPoint();
+			update();
+			draw();
+		}, 1000/24);
+	});
+</script>
 {% endblock %}

@@ -11,32 +11,33 @@
 
 	<!-- Embedded CSS, overwrites external CSS -->
     <style type="text/css">
-		<!-- background-color: green; -->
     </style>
 
   </head>
   
   <body>
-	<!-- Top part of page -->
 	<header id="header">
-		<p class="title" style="text-align:left; margin-left: 2px;"> League of Legends </p>
-		<p class="title" style="text-align:left; margin-left: 6px; margin-top: 2px;"> Top-Lane Guides </p>
 		<img class="center-image" src="static/resources/images/emblemsedited.png" />
+		<p class="title" style="text-align:left; margin-left: 2px; margin-top: -86px;"> League of Legends </p>
+		<p class="title" style="text-align:left; margin-left: 6px; margin-top: 2px;"> Top-Lane Guides </p>
+		
+		<!-- Search bar script -->
+		<script type="text/javascript">
+		function goTo()
+		{
+			location.href = document.getElementById('link_id').value;
+		}
+		</script>
 
 		<div id="search-bar">
 			<form>
-				<input type="text" name="search" placeholder="Search Keyword">
+				<input type="text" id="link_id" name="search" placeholder="Champion">
+				<input type="button" class="searchbtn" id="link" value="Search" onClick="javascript:goTo()">
 			</form>
 		</div>
-		
-		<!--
-		<div id="header-emblems">
-			<img src="static/resources/images/emblemsedited.png" />
-		</div>
-		-->
 	</header>
 	
-	<!-- Navigator bar for links, wrapper div adds margins --> 
+	<!-- Nav bar for links, wrapper div adds margins --> 
 	<div id="wrapper">
 		<nav id="nav-bar">
 			<ul>
@@ -50,13 +51,11 @@
 		
 		<div id="container-image-bar-outer">
 			<div id="container-image-bar-top">
-				<!-- Placeholder image -->
 				<img src="static/resources/images/jax_edited.png" class="image-bar-image" image-bar-image-link="{{ url_for('jax') }}"/>
 			</div>
 				
 			<div id="container-image-bar-bottom">
 				<div id="container-image-bar">
-					<!-- All of these images should be clickable and change page content -->
 					<img src="static/resources/portraits/Gangplank.png" class="image-bar-image" image-bar-image-link="{{ url_for('gangplank') }}"/>
 					<img src="static/resources/portraits/Poppy.png" class="image-bar-image" image-bar-image-link="{{ url_for('poppy') }}"/>
 					<img src="static/resources/portraits/Yasuo.png" class="image-bar-image" image-bar-image-link="{{ url_for('yasuo') }}"/>
@@ -65,16 +64,15 @@
 					<img src="static/resources/portraits/Irelia.png" class="image-bar-image" image-bar-image-link="{{ url_for('irelia') }}"/>
 					<img src="static/resources/portraits/Singed.png" class="image-bar-image" image-bar-image-link="{{ url_for('singed') }}" />
 					<img src="static/resources/portraits/Jax.png" class="image-bar-image" image-bar-image-link="{{ url_for('jax') }}" />
-					<a href='#' class='button'>View All</a>
+					<a href="{{ url_for('viewAll')}}" class='button'>View All</a>
 				</div>
 			</div>
 		</div>
 			
-		<!-- Javascript slider shenanigens, make sure the images are all the same size for a smooth animation -->
+		<!-- Javascript slider -->
 		<div class= "container">
 			<div class="image-slider-wrapper">
 				<ul id="image_slider">
-					<!-- Placeholder images for slider -->
 					<li><img src="static/resources/slider/all_stars.png" class="slide" image-link="http://www.lolesports.com/en_US/all-star/all_star_2016/schedule/default"/></li>
 					<li><img src="static/resources/slider/worlds.png" class="slide" image-link="http://www.lolesports.com/en_US/worlds/world_championship_2016/about/"/></li>
 					<li><img src="static/resources/slider/TSM.png" class="slide" image-link="http://www.tsm.gg"/></li>
@@ -85,12 +83,14 @@
 		</div>
 		
 		<!-- Load template code into main-content -->
+		<!-- Loading scripts here in order to avoid mentioning them in templates -->
 		<div class="main-content">
 		<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 		<script src="https://www.amcharts.com/lib/3/serial.js"></script>
 		<script src="https://www.amcharts.com/lib/3/themes/black.js"></script>
 		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		{% block body %}{% endblock %}
 		
 		</div>
@@ -124,6 +124,7 @@
 		</div>
 	</footer>
 	
+	<!-- JS Slider -->
     <script type="text/javascript">
 		var ul;
 		var li_items;

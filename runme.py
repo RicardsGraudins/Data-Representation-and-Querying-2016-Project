@@ -107,6 +107,11 @@ def about():
 def playstyle():
 	return render_template('playstyle.html')
 	
+#ViewAll page
+@app.route('/viewAll')
+def viewAll():
+	return render_template('viewAll.html')
+	
 #Logout, when user clicks on logout button, pop the session and redirect to profile
 @app.route('/logout')
 def logout():
@@ -123,7 +128,7 @@ def deleteAccount():
 	return redirect(url_for('profile'))
 	
 	
-#bad request 400 with request form, leaving test1@gmail for now	
+#Bad request 400 with request form, leaving test1@gmail for now	
 @app.route('/changeEmail')
 def changeEmail():
 	users = mongo.db.users
