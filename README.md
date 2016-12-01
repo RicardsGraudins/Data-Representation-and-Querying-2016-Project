@@ -86,3 +86,6 @@ All of the champion templates consist of an embedded youtube video from the [off
   * Login.html & Register.html has updated content.
   * Search bar is now usable and changes template acording to input.
   * Added viewAll.html template.
+8. Change Email:
+  * Implemented change email.
+  * Updated README.md.
