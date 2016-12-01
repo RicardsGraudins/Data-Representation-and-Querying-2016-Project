@@ -128,15 +128,19 @@ def deleteAccount():
 	return redirect(url_for('profile'))
 	
 	
-#Bad request 400 with request form, leaving test1@gmail for now	
-@app.route('/changeEmail')
+#ChangeEmail, if the user is logged in:
+#if the method is post - change email, otherwise method is get - return changeEmail.html
+@app.route('/changeEmail', methods=['POST', 'GET'])
 def changeEmail():
-	users = mongo.db.users
-	user = users.find_one({'name' : session['username']})
-	user['email'] = 'test1@gmail.com'
-	users.save(user)
-	return redirect(url_for('profile'))
-
+	if 'username' in session:
+		if request.method == 'POST':
+			users = mongo.db.users
+			user = users.find_one({'name' : session['username']})
+			user['email'] = request.form['newEmail']
+			users.save(user)
+			flash('Email changed!')
+		return render_template('changeEmail.html')
+	return render_template('login.html')
 
 if __name__ == "__main__":
 	app.secret_key = 'mysecret'
